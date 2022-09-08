@@ -28,6 +28,7 @@ char menu (void){
     printf("2 - teste 02                      ");
     printf("3 - teste 03                      ");
     printf("4 - teste 04                      ");
+    printf("5 - exit                          ");
     printf("==================================");
     return op = ler();
 }
