@@ -6,7 +6,7 @@ char menu(void);
 
 int main(void){
 
-
+    menu();
 
     return 0;
 }
@@ -22,14 +22,14 @@ char ler (void){
 char menu (void){
 
     char op;
-    printf("==================================");
-    printf("========= Menu de testes =========");
-    printf("1 - teste 01                      ");
-    printf("2 - teste 02                      ");
-    printf("3 - teste 03                      ");
-    printf("4 - teste 04                      ");
-    printf("5 - exit                          ");
-    printf("==================================");
+    printf("==================================\n");
+    printf("========= Menu de testes =========\n");
+    printf("1 - teste 01                      \n");
+    printf("2 - teste 02                      \n");
+    printf("3 - teste 03                      \n");
+    printf("4 - teste 04                      \n");
+    printf("5 - exit                          \n");
+    printf("==================================\n");
     return op = ler();
 }
 
