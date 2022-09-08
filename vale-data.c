@@ -3,7 +3,7 @@
 int meses[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 int dataValida(int, int, int);
 int bissexto(int);
-int contagem(int, int);
+int contagem(int, int, int);
 
 int main(void) {
   int dia, mes, ano, dataOk;
@@ -24,7 +24,7 @@ int main(void) {
     printf("Data inválida...\n");
   }
   
-  int soma = contagem(dia, mes);
+  int soma = contagem(dia, mes, ano);
 
   printf("%d", soma);
 
@@ -64,7 +64,7 @@ int dataValida(int dd, int mm, int aa) {
   return 1;
 }
 
-int contagem(int aa, int mm) {
+int contagem(int dd, int mm, int aa) {
 
     if (bissexto(aa))
     {
@@ -82,7 +82,7 @@ int contagem(int aa, int mm) {
 
     }
 
-    soma = soma + aa;
+    soma = soma + dd;
 
     return soma;
 }
