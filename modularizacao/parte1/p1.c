@@ -42,8 +42,26 @@ void interacao (void) {
     op = menu();
     while (op != '0')
     {
-        
-
+        if (op == '1')
+        {
+            p1it1();
+        }
+        if (op == '2')
+        {
+            p1it2();
+        }
+        if (op == '3')
+        {
+            p1it3();
+        }
+        if (op == '4')
+        {
+            p1it4();
+        }
+        else {
+            printf("opcao invalida, digite outra\n");
+            op = menu();
+        }
 
         op = menu();
     }
