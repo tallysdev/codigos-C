@@ -5,23 +5,6 @@ int arr(int, int);
 int comb(int, int);
 
 
-int main(void){
- int n;
- int k;
- 
- printf("Digite algum numero");
- scanf("%d", &n);
- getchar();
- printf("Digite o K");
- scanf("%d", &k);
- 
- fat(n);
- arr(n,k);
- comb(n,k);
-
-    return 0;
-}
-
 int fat(int n)
 {
  int i, f;
