@@ -10,8 +10,13 @@ char verificar(char* cpf, int tam){
         {
             return printf("CPF INVALIDO\n");
         }
-        else if ( (cpf[i] > 45 || cpf[i] < 57) && cpf[i] == 47 )
+        else if ( (cpf[i] < 45 || cpf[i] > 57) && cpf[i] == 47 )
         {
+            if (cpf[i] == 45 && (i!= 3 || i!=7))
+            {
+                return printf("CPF INVALIDO\n");
+            }
+            
             return printf("CPF INVALIDO\n");
 
         }
@@ -25,6 +30,7 @@ char verificar(char* cpf, int tam){
 int main(int argc, char const *argv[])
 {
     char cpf [11];
+    // 933.458.070-41
     printf("Insira o CPF:");
     scanf("%s",cpf);
     getchar();
