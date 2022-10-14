@@ -24,7 +24,7 @@ char verificar(char* cpf, int tam){
         /* code */
     }
     
-    return 0;
+    return printf("CPF VÁLIDO");
 }
 
 int main(int argc, char const *argv[])
