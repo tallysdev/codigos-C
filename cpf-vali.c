@@ -26,7 +26,7 @@ char verificar(char *cpf, int tam)
     }
     if (tam == 11)
     {
-        /* code */
+
         int calc = 0;
         calc = (cpf[0] - 48 )* 10 + (cpf[1] - 48 )* 9 + (cpf[2] - 48 )* 8 + (cpf[3] - 48 )* 7 + (cpf[4] - 48 )* 6 + (cpf[5] - 48 )* 5 + (cpf[6] - 48 )* 4 + (cpf[7] - 48 )* 3 + (cpf[8] - 48 )* 2;
         int dv1 = calc % 11;
@@ -60,18 +60,18 @@ char verificar(char *cpf, int tam)
         {   
             printf("%c\n",dv1);
             printf("%c\n",dv2);
-            return printf("CPF a\n");
+            return printf("CPF INVALIDO\n");
         }
         else if ((dv1 >= 2 && cpf[12] == '0') || (dv2 >= 2 && cpf[13] == '0'))
         {
-            return printf("CPF b\n");
+            return printf("CPF INVALIDO\n");
         }
         
         else if ((dv1 >= 2 && cpf[12] != dc1) || (dv2 >= 2 && cpf[13] != dc2))
         {
             printf("%c\n",dc1);
             printf("%c\n",dc2);
-            return printf("CPF c\n");
+            return printf("CPF INVALIDO\n");
         } 
         else{
             return printf("CPF VÁLIDO");
@@ -85,17 +85,12 @@ char verificar(char *cpf, int tam)
 int main(int argc, char const *argv[])
 {
     char cpf[14];
-    // 933.458.070-41
     printf("Insira o CPF:");
     scanf("%s", cpf);
     getchar();
-    // printf("%s", cpf);
     int tam = strlen(cpf);
     int z = (cpf[2] - 48) * 2;
     printf("%d\n", z);
-    // printf("%d", tam);1
-    // printf("%c\n", cpf[12]);
-    // printf("%c\n", cpf[13]);
     verificar(cpf, tam);
 
     return 0;
