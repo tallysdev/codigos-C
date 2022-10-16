@@ -89,8 +89,6 @@ int main(int argc, char const *argv[])
     scanf("%s", cpf);
     getchar();
     int tam = strlen(cpf);
-    int z = (cpf[2] - 48) * 2;
-    printf("%d\n", z);
     verificar(cpf, tam);
 
     return 0;
