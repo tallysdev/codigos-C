@@ -10,16 +10,16 @@ char verificar(char *cpf, int tam)
     {
         if (tam < 11)
         {
-            return printf("CPF INVALIDO\n");
+            return 0;
         }
         else if ((cpf[i] < '-' || cpf[i] > '9') || cpf[i] == '/')
         {
             if (cpf[i] == 46 && (i != 3 || i != 7))
             {
-                return printf("CPF INVALIDO\n");
+                return 0;
             }
 
-            return printf("CPF INVALIDO\n");
+            return 0;
         }
 
         /* code */
@@ -28,7 +28,7 @@ char verificar(char *cpf, int tam)
     {
         int calc = 0;
         int mult = 10;
-        int dv1,dv2;
+        int dv1, dv2;
         for (int i = 0; i < 9; i++)
         {
             calc = calc + ((cpf[i] - 48) * mult);
@@ -48,48 +48,47 @@ char verificar(char *cpf, int tam)
         dc2 = (11 - dv2) + 48;
         if ((dv1 < 2 && cpf[tam - 2] != '0') || (dv2 < 2 && cpf[tam - 2] != '0'))
         {
-            return printf("CPF INVALIDOa\n");
+            return 0;
         }
         else if ((dv1 >= 2 && cpf[tam - 2] == '0') || (dv2 >= 2 && cpf[tam - 2] == '0'))
         {
-            return printf("CPF INVALIDOb\n");
+            return 0;
         }
         else if ((dv1 >= 2 && cpf[tam - 2] != dc1) || (dv2 >= 2 && cpf[tam - 1] != dc2))
         {
-            return printf("CPF INVALIDOc\n");
+            return 0;
         }
+    }
 
-    } 
-    
     else if (tam > 11)
     {
         int calc = 0;
         calc = (cpf[0] - 48) * 10 + (cpf[1] - 48) * 9 + (cpf[2] - 48) * 8 + (cpf[4] - 48) * 7 + (cpf[5] - 48) * 6 + (cpf[6] - 48) * 5 + (cpf[8] - 48) * 4 + (cpf[9] - 48) * 3 + (cpf[10] - 48) * 2;
         int dv1 = calc % 11;
-        int dv2 = ((cpf[0] - 48 )* 11 + (cpf[1] - 48 )* 10 + (cpf[2] - 48 )* 9 + (cpf[4] - 48 )* 8 + (cpf[5] - 48 )* 7 + (cpf[6] - 48 )* 6 + (cpf[8] - 48 )* 5 + (cpf[9] - 48 )* 4 + (cpf[10] - 48 )* 3 + (cpf[12] - 48 )* 2) % 11;
-        char dc1, dc2; 
+        int dv2 = ((cpf[0] - 48) * 11 + (cpf[1] - 48) * 10 + (cpf[2] - 48) * 9 + (cpf[4] - 48) * 8 + (cpf[5] - 48) * 7 + (cpf[6] - 48) * 6 + (cpf[8] - 48) * 5 + (cpf[9] - 48) * 4 + (cpf[10] - 48) * 3 + (cpf[12] - 48) * 2) % 11;
+        char dc1, dc2;
         dc1 = (11 - dv1) + 48;
-        dc2 = (11 - dv2) + 48; 
+        dc2 = (11 - dv2) + 48;
         if ((dv1 < 2 && cpf[12] != '0') || (dv2 < 2 && cpf[13] != '0'))
-        {   
-            return printf("CPF INVALIDO\n");
+        {
+            return 0;
         }
         else if ((dv1 >= 2 && cpf[12] == '0') || (dv2 >= 2 && cpf[13] == '0'))
         {
-            return printf("CPF INVALIDO\n");
+            return 0;
         }
-        
+
         else if ((dv1 >= 2 && cpf[12] != dc1) || (dv2 >= 2 && cpf[13] != dc2))
         {
-            return printf("CPF INVALIDO\n");
-        } 
-        else{
-            return printf("CPF VÁLIDO");
+            return 0;
+        }
+        else
+        {
+            return 1;
         }
     }
-    
 
-    return printf("CPF VÁLIDO");
+    return 1;
 }
 
 int main(int argc, char const *argv[])
@@ -99,7 +98,13 @@ int main(int argc, char const *argv[])
     scanf("%s", cpf);
     getchar();
     int tam = strlen(cpf);
-    verificar(cpf, tam);
+    while (!verificar(cpf, tam))
+    {
+        printf("CPF INVALIDO\n");
+        printf("Insira o CPF:");
+        scanf("%s", cpf);
+        getchar();
+    }
 
     return 0;
 }
