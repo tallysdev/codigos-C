@@ -26,15 +26,26 @@ char verificar(char *cpf, int tam)
     }
     if (tam == 11)
     {
-
         int calc = 0;
-        calc = (cpf[0] - 48 )* 10 + (cpf[1] - 48 )* 9 + (cpf[2] - 48 )* 8 + (cpf[3] - 48 )* 7 + (cpf[4] - 48 )* 6 + (cpf[5] - 48 )* 5 + (cpf[6] - 48 )* 4 + (cpf[7] - 48 )* 3 + (cpf[8] - 48 )* 2;
-        int dv1 = calc % 11;
-        int dv2 = ((cpf[0] - 48 )* 11 + (cpf[1] - 48 )* 10 + (cpf[2] - 48 )* 9 + (cpf[3] - 48 )* 8 + (cpf[4] - 48 )* 7 + (cpf[5] - 48 )* 6 + (cpf[6] - 48 )* 5 + (cpf[7] - 48 )* 4 + (cpf[8] - 48 )* 3 + (cpf[9] - 48 )* 2) % 11;
-        char dc1, dc2; 
+        int mult = 10;
+        int dv1,dv2;
+        for (int i = 0; i < 9; i++)
+        {
+            calc = calc + ((cpf[i] - 48) * mult);
+            mult = mult - 1;
+            dv1 = calc % 11;
+        }
+        mult = 11;
+        calc = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            calc = calc + ((cpf[i] - 48) * mult);
+            mult = mult - 1;
+            dv2 = calc % 11;
+        }
+        char dc1, dc2;
         dc1 = (11 - dv1) + 48;
         dc2 = (11 - dv2) + 48;
-
         if ((dv1 < 2 && cpf[tam - 2] != '0') || (dv2 < 2 && cpf[tam - 2] != '0'))
         {
             return printf("CPF INVALIDOa\n");
@@ -88,9 +99,6 @@ int main(int argc, char const *argv[])
     scanf("%s", cpf);
     getchar();
     int tam = strlen(cpf);
-    printf("%d", tam);
-    printf("%c", cpf[tam - 2]);
-    printf("%c", cpf[tam - 1]);
     verificar(cpf, tam);
 
     return 0;
