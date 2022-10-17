@@ -88,6 +88,22 @@ char verificar(char *cpf, int tam)
         }
     }
 
+    int cont = 0;
+    for (int i = 0; i < tam; i++)
+    {
+        if (i>0 && cpf[i] == cpf[i-1])
+        {
+            cont = cont + 1;
+            
+            if (cont == tam -1)
+            {
+                return 0;
+            }
+            
+        }
+        
+    }
+
     return 1;
 }
 
