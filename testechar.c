@@ -2,7 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
-    for (int i = 128; i < 255 ; i++)
+    for (int i = 0; i < 255 ; i++)
     {
         printf("%c", i);
     }
