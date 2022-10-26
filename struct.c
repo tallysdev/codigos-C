@@ -17,6 +17,19 @@ Vacas *cadastrarVacas();
 void mostrarVacas(const Vacas* va);
 int menu(void);
 
+int menu(void)
+{
+    int op;
+    printf("\nMenu Principal\n");
+    printf("1 - Cadastrar Vaca\n");
+    printf("2 - Pesquisar Vaca\n");
+    printf("3 - Exibir Vaca\n");
+    printf("0 - Encerrar programa\n");
+    printf("Escolha sua opção: ");
+    scanf("%d", &op);
+    return op;
+}
+
 int main(int argc, char const *argv[])
 {
     Vacas *bovinos;
@@ -29,12 +42,30 @@ int main(int argc, char const *argv[])
         if (op == 1)
         {
             bovinos = cadastrarVacas();
+
         }
 
-        else
+        else if (op == 2)
         {
             mostrarVacas(bovinos);
         }
+        
+        else if (op == 3)
+        {
+            printf("teste");
+        }
+
+        else {
+            
+            printf("Opção Invalida1");
+            printf("Digite a opcao");
+            op = menu();
+
+        }
+
+        printf("Digite a opcao");
+        op = menu();
+
     }
 
     return 0;
@@ -50,7 +81,7 @@ Vacas *cadastrarVacas()
     scanf(" %f", &vac->peso);
     printf("Informe o nome: ");
     scanf(" %50[^\n]", vac->nome);
-    printf("Informe o login do vauno: ");
+    printf("Informe a raca da vaca: ");
     scanf(" %20[^\n]", vac->raca);
     vac->status = 'c';
     return vac;
@@ -72,22 +103,10 @@ void mostrarVacas(const Vacas* va)
     {
         strcpy(situacao, "Abatida");
     }
-    else
+       else
     {
         strcpy(situacao, "Vaca roubada");
     }
     printf("Situação da vaquinha: %s\n", situacao);
 }
 
-int menu(void)
-{
-    int op;
-    printf("\nMenu Principal\n");
-    printf("1 - Cadastrar Vaca\n");
-    printf("2 - Pesquisar Vaca\n");
-    printf("3 - Exibir Vaca\n");
-    printf("0 - Encerrar programa\n");
-    printf("Escolha sua opção: ");
-    scanf("%d", &op);
-    return op;
-}
