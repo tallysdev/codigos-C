@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX 100
 typedef struct vacas Vacas;
 
 struct vacas
@@ -16,6 +17,14 @@ struct vacas
 Vacas *cadastrarVacas();
 void mostrarVacas(const Vacas* va);
 int menu(void);
+void inicializa(int n, Vacas** tab);
+
+Vacas* tab[MAX];
+
+void inicializa (MAX, Vacas** tab) {
+    
+
+}
 
 int menu(void)
 {
