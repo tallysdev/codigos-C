@@ -55,14 +55,6 @@ int main(int argc, char const *argv[])
             printf("teste");
         }
 
-        else {
-            
-            printf("Opção Invalida1");
-            printf("Digite a opcao");
-            op = menu();
-
-        }
-
         printf("Digite a opcao");
         op = menu();
 
