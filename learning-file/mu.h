@@ -13,5 +13,5 @@ struct mu
 void menu (void);
 void cadastrar (void);
 void listar(void);
-void garvar(Mu* bovinos);
+void gravar(Mu* bovinos);
 void mostrar(Mu* bovinos);
