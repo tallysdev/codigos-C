@@ -9,3 +9,9 @@ struct mu
     int idade;
 
 };
+
+void menu (void);
+void cadastrar (void);
+void listar(void);
+void garvar(Mu* bovinos);
+void mostrar(Mu* bovinos);
