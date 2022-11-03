@@ -38,10 +38,7 @@ int main(int argc, char const *argv[])
         }
         else if (op == 5)
         {
-            // buscar();
-            printf("Buscar Um");
-            printf("\t ...Enter para sair");
-            getchar();
+            buscar();
         }
         
         else {
@@ -106,6 +103,8 @@ void mostrar(Mu* bovinos){
     printf("\nSexo do Bovino: %c\t", bovinos->sexo);
     printf("\nIdade do Bovino: %d\t", bovinos->idade);
     printf("\nStatus do Bovino: %c\t", bovinos->status);
+    printf("\t ...Enter para sair");
+    getchar();
 }
 
 
@@ -119,4 +118,43 @@ void gravar(Mu* bovinos) {
   }
     fwrite(bovinos, sizeof(Mu), 1, fp);
     fclose(fp);
+}
+
+void buscar(void) {
+    FILE* fp;
+    Mu* bovinos;
+    int resultado;
+    char nomeBusca[51];
+    fp = fopen("bovinos.dat", "rb");
+    if (fp == NULL)
+    {
+        /* code */
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+    }
+    system("clear");
+    printf("\n informe o nome do bovino que voce busca\t");
+    scanf("%s", nomeBusca);
+    bovinos = (Mu*)malloc(sizeof(Mu));
+    resultado = 0;
+    while ((!resultado) && (fread(bovinos, sizeof(Mu),1,fp)))
+    {
+        /* code */
+        if ((strcmp(bovinos->nome, nomeBusca) == 0) && (bovinos->status == 'C'))
+        {
+            /* code */
+            resultado = 1;
+        }
+        
+    }
+    fclose(fp);
+    if (resultado)
+    {
+        /* code */
+        mostrar(bovinos);
+    } else {
+        printf("Bovino %s não encontrado...", nomeBusca);
+    }
+    free(bovinos);
 }
