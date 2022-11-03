@@ -13,5 +13,8 @@ struct mu
 void menu (void);
 void cadastrar (void);
 void listar(void);
+void editar(void);
+void excluir(void);
+void buscar(void);
 void gravar(Mu* bovinos);
 void mostrar(Mu* bovinos);

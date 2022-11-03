@@ -17,10 +17,33 @@ int main(int argc, char const *argv[])
         }
         else if (op == 2)
         {
-            printf("teste 2\n");
+            // listar();
+            printf("Listar todos\n");
             printf("\t ...Enter para sair");
             getchar();
         }
+        else if (op == 3)
+        {
+            // editar();
+            printf("Editar\n");
+            printf("\t ...Enter para sair");
+            getchar();
+        }
+        else if (op == 4)
+        {
+            // excluir();           
+            printf("Exluir\n");
+            printf("\t ...Enter para sair");
+            getchar();
+        }
+        else if (op == 5)
+        {
+            // buscar();
+            printf("Buscar Um");
+            printf("\t ...Enter para sair");
+            getchar();
+        }
+        
         else {
             printf("\n\t opção invalida \n");
             menu();
@@ -43,6 +66,9 @@ void menu (void) {
     printf("Escolha a funçao quer voce quer fazer\n");
     printf("\n Cadastrar: 1\n");
     printf("\n Listas todos: 2\n");
+    printf("\n Editar: 3\n");
+    printf("\n Excluir: 4\n");
+    printf("\n Buscar um: 5\n");
     printf("\n Sair: 0\n");
 }
 
@@ -64,6 +90,7 @@ void cadastrar(void){
     bovinos->status = 'C';
     mostrar(bovinos);
     gravar(bovinos);
+    free(bovinos);
     printf("\t ...Enter para sair");
     getchar();
 }
