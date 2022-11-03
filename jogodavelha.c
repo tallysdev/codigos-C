@@ -2,53 +2,31 @@
 #include <stdlib.h>
 #include <time.h>
 
-void pc (char plano[][]);
-int verificar(char **plano[][] ,int);
+char pc (char **plano, int);
+// int verificar(char **plano ,int);
 
-int verificar(char **plano[3][3],int posicao) {
+// int verificar(char **plano,int posicao) {
   
-  if (posicao >= 1 || posicao <= 3)
-      {
-        if (plano[0][posicao-1] = '#')
-        {
-          return 0;
-        }
+//   if (posicao >= 1 || posicao <= 3)
+//       {
+//         if (plano[0][posicao-1] = '#')
+//         {
+//           return 1;
+//         }
          
-      }
-      else if (posicao >= 4 || posicao <= 6)
-      {
-        plano[1][posicao-4] = '@';
-      }
-      else
-      {
-        plano[2][posicao-7] = '@';
-      } 
+//       }
+//       else if (posicao >= 4 || posicao <= 6)
+//       {
+//         plano[1][posicao-4] = '@';
+//       }
+//       else
+//       {
+//         plano[2][posicao-7] = '@';
+//       } 
 
-}
+// }
 
-void pc(char plano[][]) {
-
-}
-
-int posicao;
-
-int main(int argc, char const *argv[])
-{
-    char plano[3][3] = {'#','#','#',
-                        '#','#','#',
-                        '#','#','#'};
-
-  //   for (int i = 0; i < 3; i++) {
-  //       for (int j = 0; j < 3; j++)
-  //           printf("%c\t", plano[i][j]);
-  //   printf("\n");
-  // }
-  int jogar = 1;
-    while (jogar)
-    {
-      srand(time(NULL));
-      int posicao;
-      posicao = rand() %9;
+char pc(char **plano, int posicao) {
       if (posicao >= 1 || posicao <= 3)
       {
         plano[0][posicao-1] = '@';
@@ -61,8 +39,19 @@ int main(int argc, char const *argv[])
       {
         plano[2][posicao-7] = '@';
       } 
-      jogar = 0;
-    }
+}
+
+
+
+int main(int argc, char const *argv[])
+{
+    char plano[3][3] = {'#','#','#',
+                        '#','#','#',
+                         '#','#','#'};
+  srand(time(NULL));
+  int posicao;
+  posicao = rand() %9;
+  pc(plano, posicao);
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++)
             printf("%c\t", plano[i][j]);
