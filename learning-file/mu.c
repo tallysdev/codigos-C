@@ -62,6 +62,8 @@ void cadastrar(void){
     scanf("%d", &bovinos->idade);
     getchar();
     bovinos->status = 'C';
+    mostrar(bovinos);
+    gravar(bovinos);
     printf("\t ...Enter para sair");
     getchar();
 }
@@ -72,10 +74,15 @@ void listar(void){
 }
 
 void mostrar(Mu* bovinos){
-    printf("")
+    printf("\nNome do Bovino: %s\t", bovinos->nome);
+    printf("\nTipo do Bovino: %s\t", bovinos->tipo);
+    printf("\nSexo do Bovino: %c\t", bovinos->sexo);
+    printf("\nIdade do Bovino: %d\t", bovinos->idade);
+    printf("\nStatus do Bovino: %c\t", bovinos->status);
 }
 
-void grvar(Mu* bovinos) {
+
+void gravar(Mu* bovinos) {
     FILE* fp;
     fp = fopen("bovinos.dat", "ab");
     if (fp == NULL) {
