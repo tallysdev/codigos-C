@@ -68,8 +68,7 @@ void menu(void)
     printf("\n Sair: 0\n");
 }
 
-void cadastrar(void)
-{
+void cadastrar(void) {
     Mu *bovinos;
     bovinos = (Mu *)malloc(sizeof(Mu));
     printf("\nInforme o Nome do bovino\t");
