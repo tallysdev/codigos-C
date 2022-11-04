@@ -17,10 +17,7 @@ int main(int argc, char const *argv[])
         }
         else if (op == 2)
         {
-            // listar();
-            printf("Listar todos\n");
-            printf("\t ...Enter para sair");
-            getchar();
+            listar();
         }
         else if (op == 3)
         {
@@ -31,7 +28,7 @@ int main(int argc, char const *argv[])
         }
         else if (op == 4)
         {
-            // excluir();           
+            // excluir();
             printf("Exluir\n");
             printf("\t ...Enter para sair");
             getchar();
@@ -40,27 +37,27 @@ int main(int argc, char const *argv[])
         {
             buscar();
         }
-        
-        else {
+
+        else
+        {
             printf("\n\t opção invalida \n");
             menu();
             scanf("%d", &op);
             getchar();
-        }        
-        
+        }
+
         menu();
         scanf("%d", &op);
         getchar();
     }
-    
 
     return 0;
 }
 
-void menu (void) {
-    system("clear");
-    printf("Cadastrar Bovinos\n");
-    printf("Escolha a funçao quer voce quer fazer\n");
+void menu(void)
+{
+    // system("clear");
+    printf("\nEscolha a funçao quer voce quer fazer\n");
     printf("\n Cadastrar: 1\n");
     printf("\n Listas todos: 2\n");
     printf("\n Editar: 3\n");
@@ -69,9 +66,10 @@ void menu (void) {
     printf("\n Sair: 0\n");
 }
 
-void cadastrar(void){
-    Mu* bovinos;
-    bovinos = (Mu*) malloc(sizeof(Mu));
+void cadastrar(void)
+{
+    Mu *bovinos;
+    bovinos = (Mu *)malloc(sizeof(Mu));
     printf("\nInforme o Nome do bovino\t");
     scanf("%s", bovinos->nome);
     getchar();
@@ -92,37 +90,63 @@ void cadastrar(void){
     getchar();
 }
 
-void listar(void){
+void listar(void)
+{
 
-    
-}
-
-void mostrar(Mu* bovinos){
-    printf("\nNome do Bovino: %s\t", bovinos->nome);
-    printf("\nTipo do Bovino: %s\t", bovinos->tipo);
-    printf("\nSexo do Bovino: %c\t", bovinos->sexo);
-    printf("\nIdade do Bovino: %d\t", bovinos->idade);
-    printf("\nStatus do Bovino: %c\t", bovinos->status);
-    printf("\t ...Enter para sair");
-    getchar();
-}
-
-
-void gravar(Mu* bovinos) {
-    FILE* fp;
-    fp = fopen("bovinos.dat", "ab");
-    if (fp == NULL) {
+    FILE *fp;
+    Mu *bovinos;
+    fp = fopen("bovinos.dat", "rb");
+    if (fp == NULL)
+    {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Não é possível continuar o programa...\n");
         exit(1);
-  }
+    }
+    printf("\n\n");
+    printf("= = = S G VACAS = = = \n");
+    printf("= = Exibe Animais = = \n");
+    printf("= = = = = = = = = = = \n");
+    bovinos = (Mu*)malloc(sizeof(Mu));
+    while (fread(bovinos, sizeof(Mu), 1, fp))
+    {
+        if (bovinos->status == 'C')
+        {
+            mostrar(bovinos);
+        }
+    }
+    fclose(fp);
+    free(bovinos);
+}
+
+void mostrar(Mu *bovinos)
+{
+    printf("\nNome do Bovino: %s", bovinos->nome);
+    printf("\nTipo do Bovino: %s", bovinos->tipo);
+    printf("\nSexo do Bovino: %c", bovinos->sexo);
+    printf("\nIdade do Bovino: %d", bovinos->idade);
+    printf("\nStatus do Bovino: %c", bovinos->status);
+    printf("\n");
+    // getchar();
+}
+
+void gravar(Mu *bovinos)
+{
+    FILE *fp;
+    fp = fopen("bovinos.dat", "ab");
+    if (fp == NULL)
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+    }
     fwrite(bovinos, sizeof(Mu), 1, fp);
     fclose(fp);
 }
 
-void buscar(void) {
-    FILE* fp;
-    Mu* bovinos;
+void buscar(void)
+{
+    FILE *fp;
+    Mu *bovinos;
     int resultado;
     char nomeBusca[51];
     fp = fopen("bovinos.dat", "rb");
@@ -136,9 +160,9 @@ void buscar(void) {
     system("clear");
     printf("\n informe o nome do bovino que voce busca\t");
     scanf("%s", nomeBusca);
-    bovinos = (Mu*)malloc(sizeof(Mu));
+    bovinos = (Mu *)malloc(sizeof(Mu));
     resultado = 0;
-    while ((!resultado) && (fread(bovinos, sizeof(Mu),1,fp)))
+    while ((!resultado) && (fread(bovinos, sizeof(Mu), 1, fp)))
     {
         /* code */
         if ((strcmp(bovinos->nome, nomeBusca) == 0) && (bovinos->status == 'C'))
@@ -146,14 +170,15 @@ void buscar(void) {
             /* code */
             resultado = 1;
         }
-        
     }
     fclose(fp);
     if (resultado)
     {
         /* code */
         mostrar(bovinos);
-    } else {
+    }
+    else
+    {
         printf("Bovino %s não encontrado...", nomeBusca);
     }
     free(bovinos);
