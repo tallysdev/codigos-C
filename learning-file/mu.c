@@ -18,6 +18,8 @@ int main(int argc, char const *argv[])
         else if (op == 2)
         {
             listar();
+            printf("\n\t ...Enter para sair");
+            getchar();
         }
         else if (op == 3)
         {
@@ -56,7 +58,7 @@ int main(int argc, char const *argv[])
 
 void menu(void)
 {
-    // system("clear");
+    system("clear");
     printf("\nEscolha a funçao quer voce quer fazer\n");
     printf("\n Cadastrar: 1\n");
     printf("\n Listas todos: 2\n");
