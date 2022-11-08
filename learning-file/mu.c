@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
         }
         else if (op == 4)
         {
-            // excluir();
+            excluir();
             printf("Exluir\n");
             printf("\t ...Enter para sair");
             getchar();
@@ -68,7 +68,8 @@ void menu(void)
     printf("\n Sair: 0\n");
 }
 
-void cadastrar(void) {
+void cadastrar(void)
+{
     Mu *bovinos;
     bovinos = (Mu *)malloc(sizeof(Mu));
     printf("\nInforme o Nome do bovino\t");
@@ -107,7 +108,7 @@ void listar(void)
     printf("= = = S G VACAS = = = \n");
     printf("= = Exibe Animais = = \n");
     printf("= = = = = = = = = = = \n");
-    bovinos = (Mu*)malloc(sizeof(Mu));
+    bovinos = (Mu *)malloc(sizeof(Mu));
     while (fread(bovinos, sizeof(Mu), 1, fp))
     {
         if (bovinos->status == 'C')
@@ -146,6 +147,7 @@ void gravar(Mu *bovinos)
 
 void buscar(void)
 {
+
     FILE *fp;
     Mu *bovinos;
     int resultado;
@@ -183,4 +185,62 @@ void buscar(void)
         printf("Bovino %s não encontrado...", nomeBusca);
     }
     free(bovinos);
+}
+
+void excluir(void)
+{
+
+    FILE *fp;
+    Mu *bovino;
+    int achou;
+    char resp;
+    char procurado[15];
+    fp = fopen("bovinos.dat", "r+b");
+    if (fp == NULL)
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+    }
+    printf("\n\n");
+    printf("= = = S G Vacas = = = \n");
+    printf("= =   Bovinos   = = \n");
+    printf("= = = = = = = = = = = \n");
+    printf("Informe o nome do animal a ser apagado: ");
+    scanf(" %14[^\n]", procurado);
+    bovino = (Mu*)malloc(sizeof(Mu));
+    achou = 0;
+    while ((!achou) && (fread(bovino, sizeof(Mu), 1, fp)))
+    {
+        if ((strcmp(bovino->nome, procurado) == 0) && (bovino->status == 'C'))
+        {
+            achou = 1;
+        }
+    }
+
+    if (achou)
+    {
+        mostrar(bovino);
+        getchar();
+        printf("Deseja realmente apagar este animal (s/n)? ");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S')
+        {
+            bovino->status = 'A';
+            fseek(fp, (-1) * sizeof(Mu), SEEK_CUR);
+            fwrite(bovino, sizeof(Mu), 1, fp);
+            printf("\nAnimal excluído com sucesso!!!\n");
+        }
+        else
+        {
+            printf("\nOk, os dados não foram alterados\n");
+        }
+    }
+    else
+    {
+        printf("O animal %s não foi encontrado...\n", procurado);
+    }
+    free(bovino);
+    fclose(fp);
+
 }
