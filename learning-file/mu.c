@@ -23,8 +23,8 @@ int main(int argc, char const *argv[])
         }
         else if (op == 3)
         {
-            // editar();
-            printf("Editar\n");
+            editar();
+            // printf("Editar\n");
             printf("\t ...Enter para sair");
             getchar();
         }
@@ -208,7 +208,7 @@ void excluir(void)
     printf("= = = = = = = = = = = \n");
     printf("Informe o nome do animal a ser apagado: ");
     scanf(" %14[^\n]", procurado);
-    bovino = (Mu*)malloc(sizeof(Mu));
+    bovino = (Mu *)malloc(sizeof(Mu));
     achou = 0;
     while ((!achou) && (fread(bovino, sizeof(Mu), 1, fp)))
     {
@@ -242,5 +242,70 @@ void excluir(void)
     }
     free(bovino);
     fclose(fp);
+}
 
+void editar(void)
+{
+
+    FILE *fp;
+    Mu *bovinos;
+    int achou;
+    char resp;
+    char procurado[15];
+    fp = fopen("bovinos.dat", "r+b");
+    if (fp == NULL)
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+    }
+    printf("\n\n");
+    printf("= = = S G P e t = = = \n");
+    printf("= = Editar Animal = = \n");
+    printf("= = = = = = = = = = = \n");
+    printf("Informe o nome do animal a ser alterado: ");
+    scanf(" %14[^\n]", procurado);
+    bovinos = (Mu *)malloc(sizeof(Mu));
+    achou = 0;
+    while ((!achou) && (fread(bovinos, sizeof(Mu), 1, fp)))
+    {
+        if ((strcmp(bovinos->nome, procurado) == 0) && (bovinos->status == 'C'))
+        {
+            achou = 1;
+        }
+    }
+    if (achou)
+    {
+        mostrar(bovinos);
+        getchar();
+        printf("Deseja realmente editar este animal (s/n)? ");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S')
+        {
+            printf("\nInforme o nome do bovino: ");
+            scanf("%s", bovinos->nome);
+            getchar();
+            printf("Informe o tipo do animal: ");
+            scanf(" %s14[^\n]", bovinos->tipo);
+            getchar();
+            printf("Informe o sexo do bovino: ");
+            scanf(" %c,14[^\n]", &bovinos->sexo);
+            getchar();
+            bovinos->status = 'C';
+            fseek(fp, (-1) * sizeof(Mu), SEEK_CUR);
+            fwrite(bovinos, sizeof(Mu), 1, fp);
+            printf("\nBovino editado com sucesso!!!\n");
+
+        }
+        else
+        {
+            printf("\nOk, os dados não foram alterados\n");
+        }
+    }
+    else
+    {
+        printf("O animal %s não foi encontrado...\n", procurado);
+    }
+    free(bovinos);
+    fclose(fp);
 }
