@@ -147,7 +147,6 @@ void gravar(Mu *bovinos)
 
 void buscar(void)
 {
-
     FILE *fp;
     Mu *bovinos;
     int resultado;
