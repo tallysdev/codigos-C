@@ -6,24 +6,28 @@ char verificar(char *cpf, int);
 char verificar(char *cpf, int tam)
 {
 
-    for (int i = 0; i < tam; i++)  {
-    
+    for (int i = 0; i < tam; i++)
+    {
+
         // printf("%d\n i \t",i);
         printf("%c cpf \t", cpf[i]);
 
-        if (tam < 11) {
+        if (tam < 11)
+        {
             return 0;
         }
 
-        else if ((cpf[i] < '-' || cpf[i] > '9') || cpf[i] == '/')
+        else if ((cpf[i] <= ',' || cpf[i] >= ':') || cpf[i] == '/')
         {
             printf("Entrou aaqui");
-            if ((cpf[i] == 46 && (i != 3 || i != 7)) || (cpf[i] == 45 && (i != 11)))
-            {
-                printf("Entrou aqui tbm");
-                return 0;
-            }
 
+            return 0;
+        }
+
+        else if ((cpf[i] == 46 && (i != 3 && i != 7)) || (cpf[i] == 45 && (i != 11)))
+        {
+            printf("Entrou a 29");            // printf("%c\t cpf position", cpf[i]);
+            // printf("%d\n", i);
             return 0;
         }
 
@@ -96,17 +100,15 @@ char verificar(char *cpf, int tam)
     int cont = 0;
     for (int i = 0; i < tam; i++)
     {
-        if (i>0 && cpf[i] == cpf[i-1])
+        if (i > 0 && cpf[i] == cpf[i - 1])
         {
             cont = cont + 1;
-            
-            if (cont == tam -1)
+
+            if (cont == tam - 1)
             {
                 return 0;
             }
-            
         }
-        
     }
 
     return 1;
