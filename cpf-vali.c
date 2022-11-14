@@ -9,9 +9,6 @@ char verificar(char *cpf, int tam)
     for (int i = 0; i < tam; i++)
     {
 
-        // printf("%d\n i \t",i);
-        printf("%c cpf \t", cpf[i]);
-
         if (tam < 11)
         {
             return 0;
@@ -19,15 +16,12 @@ char verificar(char *cpf, int tam)
 
         else if ((cpf[i] <= ',' || cpf[i] >= ':') || cpf[i] == '/')
         {
-            printf("Entrou aaqui");
 
             return 0;
         }
 
         else if ((cpf[i] == 46 && (i != 3 && i != 7)) || (cpf[i] == 45 && (i != 11)))
         {
-            printf("Entrou a 29");            // printf("%c\t cpf position", cpf[i]);
-            // printf("%d\n", i);
             return 0;
         }
 
