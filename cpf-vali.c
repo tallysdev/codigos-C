@@ -126,6 +126,7 @@ int main(int argc, char const *argv[])
         printf("CPF INVALIDO\n");
         printf("Insira o CPF: 073.167.440-57\t");
         scanf("%s", cpf);
+        tam = strlen(cpf);
         printf("%s", cpf);
         getchar();
     }
