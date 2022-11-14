@@ -6,16 +6,21 @@ char verificar(char *cpf, int);
 char verificar(char *cpf, int tam)
 {
 
-    for (int i = 0; i < tam; i++)
-    {
-        if (tam < 11)
-        {
+    for (int i = 0; i < tam; i++)  {
+    
+        // printf("%d\n i \t",i);
+        printf("%c cpf \t", cpf[i]);
+
+        if (tam < 11) {
             return 0;
         }
+
         else if ((cpf[i] < '-' || cpf[i] > '9') || cpf[i] == '/')
         {
-            if (cpf[i] == 46 && (i != 3 || i != 7))
+            printf("Entrou aaqui");
+            if ((cpf[i] == 46 && (i != 3 || i != 7)) || (cpf[i] == 45 && (i != 11)))
             {
+                printf("Entrou aqui tbm");
                 return 0;
             }
 
@@ -110,15 +115,16 @@ char verificar(char *cpf, int tam)
 int main(int argc, char const *argv[])
 {
     char cpf[14];
-    printf("Insira o CPF:");
+    printf("Insira o CPF: 073.167.440-57\t");
     scanf("%s", cpf);
     getchar();
     int tam = strlen(cpf);
     while (!verificar(cpf, tam))
     {
         printf("CPF INVALIDO\n");
-        printf("Insira o CPF:");
+        printf("Insira o CPF: 073.167.440-57\t");
         scanf("%s", cpf);
+        printf("%s", cpf);
         getchar();
     }
 
