@@ -45,7 +45,8 @@ char verificar(char *cpf, int tam)
         dc1 = dv1 + '0';
         dc2 = dv2 + '0';
 
-        if ((dv1 == 10 && cpf[tam - 2] != '0') || (dv2 == 10 && cpf[tam - 1] != '0'))  {
+        if ((dv1 == 10 && cpf[tam - 2] != '0') || (dv2 == 10 && cpf[tam - 1] != '0'))
+        {
             printf("entrou na 81");
             return 0;
         }
@@ -58,26 +59,6 @@ char verificar(char *cpf, int tam)
 
             return 0;
         }
-
-        // if ((dv1 < 2 && cpf[tam - 2] != '0') || (dv2 < 2 && cpf[tam - 1] != '0'))
-        // {
-        //     printf("entrou na 76");
-        //     return 0;
-        // }
-        // else if ((dv1 == 10 && cpf[tam - 2] != '0') || (dv2 == 10 && cpf[tam - 1] != '0'))
-        // {
-        //     printf("entrou na 81");
-        //     return 0;
-        // }
-        // else if ((dv1 >= 2 && cpf[tam - 2] != dc1) || (dv2 >= 2 && cpf[tam - 1] != dc2))
-        // {
-        //     printf("%d", dv1);
-        //     printf("%d", dv2);
-        //     printf("%c", dc1);
-        //     printf("%c", dc2);
-
-        //     return 0;
-        // }
     }
 
     else if (tam > 11)
