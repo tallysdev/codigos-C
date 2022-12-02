@@ -40,6 +40,17 @@ int main(int argc, char const *argv[])
             buscar();
         }
 
+        else if (op == 6)
+        {
+        
+            Idade(1);
+        }
+
+        else if (op == 7)
+        {
+            Idade(2);
+        }
+
         else
         {
             printf("\n\t opção invalida \n");
@@ -65,6 +76,8 @@ void menu(void)
     printf("\n Editar: 3\n");
     printf("\n Excluir: 4\n");
     printf("\n Buscar um: 5\n");
+    printf("\n Mostar por Maior idade de Bovino: 6\n");
+    printf("\n Mostar por Menor idade de Bovino: 7\n");
     printf("\n Sair: 0\n");
 }
 
@@ -310,4 +323,8 @@ void editar(void)
     }
     free(bovinos);
     fclose(fp);
+}
+
+void Idade(int num) {
+    
 }
