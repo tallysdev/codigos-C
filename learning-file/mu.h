@@ -1,4 +1,5 @@
 typedef struct mu Mu;
+typedef struct dinan Dinan;
 
 struct mu
 {
@@ -8,7 +9,17 @@ struct mu
     char sexo;
     int idade;
 
-};
+}
+
+struct dinan
+{
+    char nome [51];
+    char tipo [25];
+    char status;
+    char sexo;
+    int idade;
+    Dinan* prox;
+}
 
 void menu (void);
 void cadastrar (void);
