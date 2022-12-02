@@ -27,5 +27,6 @@ void listar(void);
 void editar(void);
 void excluir(void);
 void buscar(void);
+void Idade(int num);
 void gravar(Mu* bovinos);
 void mostrar(Mu* bovinos);
