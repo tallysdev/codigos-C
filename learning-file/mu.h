@@ -9,7 +9,7 @@ struct mu
     char sexo;
     int idade;
 
-}
+};
 
 struct dinan
 {
@@ -19,7 +19,7 @@ struct dinan
     char sexo;
     int idade;
     Dinan* prox;
-}
+};
 
 void menu (void);
 void cadastrar (void);
