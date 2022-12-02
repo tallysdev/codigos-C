@@ -128,7 +128,7 @@ void mostrar(Mu *bovinos)
     printf("\nIdade do Bovino: %d", bovinos->idade);
     printf("\nStatus do Bovino: %c", bovinos->status);
     printf("\n");
-    getchar();
+    // getchar();
 
 
     
