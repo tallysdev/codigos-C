@@ -136,6 +136,18 @@ void listar(void)
     free(bovinos);
 }
 
+void mostrarDin(Dinan *novo)
+{
+    printf("\nNome do Bovino: %s", novo->nome);
+    printf("\nTipo do Bovino: %s", novo->tipo);
+    printf("\nSexo do Bovino: %c", novo->sexo);
+    printf("\nIdade do Bovino: %d", novo->idade);
+    printf("\nStatus do Bovino: %c", novo->status);
+    printf("\n");
+    // getchar();
+
+}
+
 void mostrar(Mu *bovinos)
 {
     printf("\nNome do Bovino: %s", bovinos->nome);
@@ -146,8 +158,6 @@ void mostrar(Mu *bovinos)
     printf("\n");
     // getchar();
 
-
-    
 }
 
 void gravar(Mu *bovinos)
@@ -361,23 +371,30 @@ void Idade(int num) {
 
                     tam = strlen(mumuzinho->nome) + 1;
 
-                    // novo->nome = (char*) malloc(tam*sizeof(char));
-                    // strcpy(novo->nome, mumuzinho->nome);
+                        strcpy(novo->nome, mumuzinho->nome);
+                        strcpy(novo->tipo, mumuzinho->tipo);
+                        // novo->nome = mumuzinho->nome;
+                        novo->status = mumuzinho->status;
+                        novo->sexo = mumuzinho->sexo;
+                        //novo->tipo = mumuzinho->tipo;
+                        
+                        //  (char*) malloc(tam*sizeof(char));
+                        // strcpy(novo->nome, mumuzinho->nome);
 
-                    // tam = strlen(mumuzinho->status) + 1;
+                        // tam = strlen(mumuzinho->status) + 1;
 
-                    // novo->status = (char*) malloc(tam*sizeof(char));
-                    // strcpy(novo->status, mumuzinho->status);
+                        // novo->status = (char*) malloc(tam*sizeof(char));
+                        // strcpy(novo->status, mumuzinho->status);
 
-                    // tam = strlen(mumuzinho->sexo) + 1;
+                        // tam = strlen(mumuzinho->sexo) + 1;
 
-                    // novo->sexo = (char*) malloc(tam*sizeof(char));
-                    // strcpy(novo->sexo, mumuzinho->sexo);
+                        // novo->sexo = (char*) malloc(tam*sizeof(char));
+                        // strcpy(novo->sexo, mumuzinho->sexo);
 
-                    // tam = strlen(mumuzinho->tipo) + 1;
+                        // tam = strlen(mumuzinho->tipo) + 1;
 
-                    // novo->tipo = (char*) malloc(tam*sizeof(char));
-                    // strcpy(novo->tipo, mumuzinho->tipo);
+                        // novo->tipo = (char*) malloc(tam*sizeof(char));
+                        // strcpy(novo->tipo, mumuzinho->tipo);
 
                     
                     novo->idade = mumuzinho->idade;
@@ -446,7 +463,7 @@ void Idade(int num) {
             novo = lista;
             while (novo != NULL) {
 
-                mostrar(novo);
+                mostrarDin(novo);
                 novo = novo->prox;
 
             }
@@ -454,8 +471,8 @@ void Idade(int num) {
             novo = lista;
             while (lista != NULL) {
                 lista = lista->prox;
-                free(novo->nome);
-                free(novo->status);
+                // free(novo->nome);
+                // free(novo->status);
                 free(novo);
                 novo = lista;
             }
@@ -467,4 +484,3 @@ void Idade(int num) {
     }
     
 }
-
