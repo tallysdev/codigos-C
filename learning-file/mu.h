@@ -13,8 +13,8 @@ struct mu
 
 struct dinan
 {
-    char nome [51];
-    char tipo [25];
+    char nome[51];
+    char tipo[25];
     char status;
     char sexo;
     int idade;
@@ -30,3 +30,4 @@ void buscar(void);
 void Idade(int num);
 void gravar(Mu* bovinos);
 void mostrar(Mu* bovinos);
+void mostrarDin(Dinan *novo);
