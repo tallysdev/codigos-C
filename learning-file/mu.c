@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "mu.h"
 
 int main(int argc, char const *argv[])
@@ -44,11 +45,13 @@ int main(int argc, char const *argv[])
         {
         
             Idade(1);
+            getchar();
         }
 
         else if (op == 7)
         {
             Idade(2);
+            getchar();
         }
 
         else
@@ -326,5 +329,142 @@ void editar(void)
 }
 
 void Idade(int num) {
+    FILE *fp;
+    Mu * mumuzinho;
+    Dinan *novo;
+    Dinan *lista;
+    int tam;
+
+    if (access("bovinos.dat", F_OK) != -1)    {
+        /* code */
+        fp = fopen("bovinos.dat","rb");
+
+        if (fp == NULL) {
+
+            printf("Erro na abertura do arquivo");
+        }
+        
+        else
+        {
+            /* code */
+            lista = NULL;
+
+            mumuzinho = (Mu*) malloc(sizeof(Mu));
+
+            while (fread(mumuzinho, sizeof(Mu), 1, fp))
+            {
+                /* code */
+                if (mumuzinho->status == 'C')
+                {
+                    /* code */
+                    novo = (Dinan*) malloc(sizeof(Dinan));
+
+                    tam = strlen(mumuzinho->nome) + 1;
+
+                    // novo->nome = (char*) malloc(tam*sizeof(char));
+                    // strcpy(novo->nome, mumuzinho->nome);
+
+                    // tam = strlen(mumuzinho->status) + 1;
+
+                    // novo->status = (char*) malloc(tam*sizeof(char));
+                    // strcpy(novo->status, mumuzinho->status);
+
+                    // tam = strlen(mumuzinho->sexo) + 1;
+
+                    // novo->sexo = (char*) malloc(tam*sizeof(char));
+                    // strcpy(novo->sexo, mumuzinho->sexo);
+
+                    // tam = strlen(mumuzinho->tipo) + 1;
+
+                    // novo->tipo = (char*) malloc(tam*sizeof(char));
+                    // strcpy(novo->tipo, mumuzinho->tipo);
+
+                    
+                    novo->idade = mumuzinho->idade;
+
+                    if (num == 1) {
+                        if (lista == NULL) {
+                            lista = novo;
+                            novo->prox = NULL;
+                        } 
+
+                        else if (novo->idade > lista->idade) {
+                            novo->prox = lista;
+                            lista = novo;
+                        } 
+
+                        else {
+                            Dinan* anter = lista;
+                            Dinan* atual = lista->prox;
+
+                            while ((atual != NULL) && atual->idade > novo->idade) {
+                                anter = atual;
+                                atual = atual->prox;
+                            }
+
+                            anter->prox = novo;
+                            novo->prox = atual;
+
+                        }
+                    }
+
+                    else {
+                        if (lista == NULL) {
+                            lista = novo;
+                            novo->prox = NULL;
+                        } 
+
+                        else if (novo->idade < lista->idade) {
+                            novo->prox = lista;
+                            lista = novo;
+                        } 
+
+                        else {
+                            Dinan* anter = lista;
+                            Dinan* atual = lista->prox;
+
+                            while ((atual != NULL) && atual->idade < novo->idade) {
+                                anter = atual;
+                                atual = atual->prox;
+                            }
+
+                            anter->prox = novo;
+                            novo->prox = atual;
+
+                        }
+
+                    }
+
+                    
+                }
+                
+
+            }
+
+            free(mumuzinho);
+
+            novo = lista;
+            while (novo != NULL) {
+
+                mostrar(novo);
+                novo = novo->prox;
+
+            }
+
+            novo = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novo->nome);
+                free(novo->status);
+                free(novo);
+                novo = lista;
+            }
+            
+        }
+
+        fclose(fp);
+        
+    }
     
 }
+
